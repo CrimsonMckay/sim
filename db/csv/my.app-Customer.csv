@@ -1,0 +1,4 @@
+ID,Fullname,age,gender,createdAt
+1,John Doe,30,male,2022-01-01T10:00:00Z
+2,Jane Smith,25,female,2022-02-15T15:30:00Z
+3,Michael Johnson,40,male,2022-03-20T08:45:00Z
