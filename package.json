@@ -7,14 +7,28 @@
   "private": true,
   "dependencies": {
     "@sap/cds": "^6",
-    "express": "^4",
-    "hdb": "^0.19.0"
+    "@sap/cds-odata-v2-adapter-proxy": "^1.9.21",
+    "cds-routing-handlers": "^3.0.7",
+    "express": "^4.18.2",
+    "hdb": "^0.19.0",
+    "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
-    "sqlite3": "^5.0.4"
+    "cds2types": "^3.0.0",
+    "sqlite3": "^5.0.4",
+    "ts-node": "^10.9.1"
   },
   "scripts": {
-    "start": "cds run"
+    "start": "cds run",
+    "start-service:ts": "cds-ts serve --with-mocks --in-memory --profile hybrid",
+    "watch-service:ts": "cds-ts watch --with-mocks --in-memory --profile hybrid --ext ts,js,json,cds",
+    "build:cf": "npm run build:cds && npm run cleanup:ts && npm run build:ts",
+    "build:ts": "tsc",
+    "build:cds": "cds build --production",
+    "cleanup:ts": "npx rimraf gen/srv/srv/**/*.ts",
+    "generate-all": "npm run generate-types && npm run generate-local-db",
+    "generate-types": "bash ./scripts/generate-types.sh",
+    "generate-local-db": "cds deploy --to sqlite:db/cache.db"
   },
   "cds": {
     "requires": {
@@ -24,7 +38,10 @@
         }
       },
       "db": {
-        "kind": "sql"
+        "kind": "sqlite",
+        "credentials": {
+          "database": "db/cache.db"
+        }
       }
     }
   },
