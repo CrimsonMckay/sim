@@ -8,11 +8,11 @@ default-*.json
 gen/
 node_modules/
 target/
-
+srv/external
 # Web IDE, App Studio
 .che/
 .gen/
-
+.env
 # MTA
 *_mta_build_tmp
 *.mtar

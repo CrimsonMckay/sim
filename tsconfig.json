@@ -19,6 +19,7 @@
   },
   "include": [
     "scripts/*.ts",
+    "services/*.ts",
     "srv/**/*.ts",
     "db/**/*.cds",
     "src/**/*.ts",
